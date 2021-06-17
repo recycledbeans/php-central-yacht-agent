@@ -21,7 +21,7 @@ class CentralYachtAgentAPI
 
     public function request($uri)
     {
-        $url = "{$uri}?user={$this->user}&apicode={$this->key}";
+        $url = "{$this->domain}{$uri}?user={$this->user}&apicode={$this->key}";
 
         $xml = simplexml_load_file($url, 'SimpleXMLElement', LIBXML_NOCDATA);
 
