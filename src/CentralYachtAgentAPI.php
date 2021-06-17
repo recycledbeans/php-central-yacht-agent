@@ -4,16 +4,12 @@ namespace RecycledBeans\CentralYachtAgent;
 
 class CentralYachtAgentAPI
 {
-    protected $domain;
+    protected $domain = 'http://www.centralyachtagent.com/snapins/';
     protected $key;
     protected $user;
 
-    public function __construct($domain = null, $key = null, $user = null)
+    public function __construct($key = null, $user = null)
     {
-        if (!$domain) {
-            $this->domain = getenv('CENTRAL_YACHT_AGENT_DOMAIN');
-        }
-
         if (!$key) {
             $this->key = getenv('CENTRAL_YACHT_AGENT_API_KEY');
         }
