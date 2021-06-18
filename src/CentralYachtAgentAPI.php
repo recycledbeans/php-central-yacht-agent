@@ -4,7 +4,7 @@ namespace RecycledBeans\CentralYachtAgent;
 
 class CentralYachtAgentAPI
 {
-    protected $domain = 'http://www.centralyachtagent.com/snapins/';
+    protected $domain = 'https://www.centralyachtagent.com/snapins/';
     protected $key;
     protected $user;
 
