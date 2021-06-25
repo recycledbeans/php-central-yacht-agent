@@ -27,7 +27,7 @@ class CentralYachtAgentAPI
         return $this;
     }
 
-    public function request($uri, $parameters)
+    public function request($uri, $parameters = [])
     {
         $default_parameters = [
             'user' => $this->user,
