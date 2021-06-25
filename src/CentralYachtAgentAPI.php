@@ -7,6 +7,7 @@ class CentralYachtAgentAPI
     protected $domain = 'https://www.centralyachtagent.com/snapins/';
     protected $key;
     protected $user;
+    protected $limit = 20;
 
     public function __construct($key = null, $user = null)
     {
@@ -19,9 +20,25 @@ class CentralYachtAgentAPI
         }
     }
 
-    public function request($uri)
+    public function maxResults($max = 20)
     {
-        $url = "{$this->domain}{$uri}?user={$this->user}&apicode={$this->key}";
+        $this->limit = $max;
+
+        return $this;
+    }
+
+    public function request($uri, $parameters)
+    {
+        $default_parameters = [
+            'user' => $this->user,
+            'apicode' => $this->key,
+            'maxResults' => $this->limit,
+        ];
+
+        $all_parameters = array_merge($default_parameters, $parameters);
+        $query_string = http_build_query($all_parameters);
+
+        $url = "{$this->domain}{$uri}?{$query_string}";
 
         $xml = simplexml_load_file($url, 'SimpleXMLElement', LIBXML_NOCDATA);
 
@@ -30,8 +47,11 @@ class CentralYachtAgentAPI
 
     public function search()
     {
-        $uri = 'snyachts-xml.php';
+        return $this->request('snyachts-xml.php');
+    }
 
-        return $this->request($uri);
+    public function brochure($id)
+    {
+        return $this->request('ebrochure-xml.php', ['idin' => $id]);
     }
 }
