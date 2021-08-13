@@ -45,9 +45,9 @@ class CentralYachtAgentAPI
         return json_decode(json_encode($xml), true);
     }
 
-    public function search()
+    public function search($parameters = [])
     {
-        return $this->request('snyachts-xml.php');
+        return $this->request('snyachts-xml.php', $parameters);
     }
 
     public function brochure($id)
