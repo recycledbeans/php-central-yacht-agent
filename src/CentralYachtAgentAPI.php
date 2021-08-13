@@ -54,4 +54,9 @@ class CentralYachtAgentAPI
     {
         return $this->request('ebrochure-xml.php', ['idin' => $id]);
     }
+
+    public function locations()
+    {
+        return $this->request('xmllocations2.php');
+    }
 }
