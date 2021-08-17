@@ -11,12 +11,20 @@ class CentralYachtAgentAPI
 
     public function __construct($key = null, $user = null)
     {
-        if (!$key) {
+        if (!$key && getenv('CENTRAL_YACHT_AGENT_API_KEY')) {
             $this->key = getenv('CENTRAL_YACHT_AGENT_API_KEY');
         }
 
-        if (!$user) {
+        if (!$user && getenv('CENTRAL_YACHT_AGENT_USER')) {
             $this->user = getenv('CENTRAL_YACHT_AGENT_USER');
+        }
+
+        if (!$key && defined('CENTRAL_YACHT_AGENT_API_KEY')) {
+            $this->key = CENTRAL_YACHT_AGENT_API_KEY;
+        }
+
+        if (!$user && defined('CENTRAL_YACHT_AGENT_USER')) {
+            $this->user = CENTRAL_YACHT_AGENT_USER;
         }
     }
 
